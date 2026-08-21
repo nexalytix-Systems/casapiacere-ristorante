@@ -3,14 +3,26 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Casa Piacere Ristorante - Chatbot Version</title>
+    <title>Casa Piacere Ristorante - Belo Horizonte</title>
+    <meta name="description" content="Casa Piacere Ristorante. Massas artesanais, frutos do mar e experiência italiana autêntica em Belo Horizonte.">
+    <meta name="keywords" content="restaurante italiano, massas artesanais, Belo Horizonte, Casa Piacere">
+    
+    <!-- Open Graph -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://casapiacere.com.br">
+    <meta property="og:title" content="Casa Piacere Ristorante">
+    <meta property="og:description" content="Massas artesanais e autêntica culinária italiana">
     
     <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Montserrat:wght@400;600&family=Cormorant+Garamond:wght@600&display=swap" rel="stylesheet">
     
     <style>
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
         :root {
             --azul-profundo: #0a1f3f;
             --azul-claro: #1a3a5c;
@@ -21,6 +33,10 @@
             --branco: #fafaf8;
         }
 
+        html {
+            scroll-behavior: smooth;
+        }
+
         body {
             font-family: 'Montserrat', sans-serif;
             line-height: 1.6;
@@ -28,7 +44,445 @@
             background: var(--branco);
         }
 
-        /* CHATBOT WIDGET */
+        header {
+            background: var(--azul-profundo);
+            padding: 1.5rem 2rem;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .header-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            height: 56px;
+            display: flex;
+            align-items: center;
+        }
+
+        .logo img {
+            height: 100%;
+            width: auto;
+        }
+
+        nav {
+            display: flex;
+            gap: 2rem;
+        }
+
+        nav a {
+            color: var(--ouro);
+            text-decoration: none;
+            font-size: 0.9rem;
+            font-weight: 600;
+            transition: color 0.3s;
+        }
+
+        nav a:hover {
+            color: var(--ouro-claro);
+        }
+
+        .btn-reservar {
+            background: var(--ouro);
+            color: var(--azul-profundo);
+            padding: 0.8rem 1.5rem;
+            border-radius: 5px;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 0.85rem;
+            transition: background 0.3s;
+        }
+
+        .btn-reservar:hover {
+            background: var(--ouro-escuro);
+        }
+
+        .hero {
+            background: linear-gradient(135deg, var(--azul-profundo) 0%, var(--azul-claro) 100%);
+            color: var(--ouro);
+            padding: 6rem 2rem;
+            text-align: center;
+            min-height: 500px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .hero h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+            font-weight: 700;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+            max-width: 600px;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            padding: 1rem 2rem;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 1rem;
+            font-weight: 600;
+            text-decoration: none;
+            display: inline-block;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .btn-primary {
+            background: var(--ouro);
+            color: var(--azul-profundo);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: var(--ouro);
+            border: 2px solid var(--ouro);
+        }
+
+        .intro-strip {
+            background: var(--ouro-claro);
+            padding: 2rem;
+            text-align: center;
+            color: var(--azul-profundo);
+        }
+
+        .intro-strip h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.8rem;
+            margin-bottom: 1rem;
+        }
+
+        section {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 3rem 2rem;
+        }
+
+        section h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.5rem;
+            text-align: center;
+            margin-bottom: 2rem;
+            color: var(--azul-profundo);
+        }
+
+        .about-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+            align-items: center;
+        }
+
+        .about-grid img {
+            width: 100%;
+            border-radius: 8px;
+        }
+
+        .about-text h4 {
+            color: var(--ouro);
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.2rem;
+            margin-bottom: 1rem;
+        }
+
+        .stats {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .stat {
+            text-align: center;
+            padding: 1rem;
+            background: var(--ouro-claro);
+            border-radius: 8px;
+        }
+
+        .stat h5 {
+            color: var(--azul-profundo);
+            margin-bottom: 0.5rem;
+        }
+
+        #cardapio {
+            background: var(--azul-profundo);
+            color: var(--ouro);
+        }
+
+        #cardapio h2 {
+            color: var(--ouro);
+        }
+
+        .menu-tabs {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-bottom: 2rem;
+        }
+
+        .menu-tab {
+            background: var(--ouro);
+            color: var(--azul-profundo);
+            padding: 0.8rem 1.5rem;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: background 0.3s;
+        }
+
+        .menu-tab.active {
+            background: var(--ouro-escuro);
+        }
+
+        .menu-tab:hover {
+            background: var(--ouro-escuro);
+        }
+
+        .menu-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            display: none;
+        }
+
+        .menu-grid.active {
+            display: grid;
+        }
+
+        .menu-item {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 1.5rem;
+            border-radius: 8px;
+            border-left: 3px solid var(--ouro);
+        }
+
+        .menu-item h5 {
+            color: var(--ouro);
+            margin-bottom: 0.5rem;
+        }
+
+        .menu-item p {
+            font-size: 0.9rem;
+            margin-bottom: 1rem;
+        }
+
+        .menu-price {
+            color: var(--ouro-claro);
+            font-weight: 700;
+            font-size: 1.2rem;
+        }
+
+        .gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .gallery-item {
+            position: relative;
+            overflow: hidden;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: transform 0.3s;
+        }
+
+        .gallery-item:hover {
+            transform: scale(1.05);
+        }
+
+        .gallery-item img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            display: block;
+        }
+
+        #avaliacoes {
+            background: var(--ouro-claro);
+        }
+
+        .reviews-list {
+            margin-bottom: 2rem;
+        }
+
+        .review {
+            background: white;
+            padding: 1.5rem;
+            border-radius: 8px;
+            margin-bottom: 1rem;
+            border-left: 3px solid var(--ouro);
+        }
+
+        .review-header {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 0.5rem;
+        }
+
+        .review-name {
+            font-weight: 700;
+            color: var(--azul-profundo);
+        }
+
+        .stars {
+            color: var(--ouro);
+        }
+
+        .review-form {
+            background: white;
+            padding: 2rem;
+            border-radius: 8px;
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+            color: var(--azul-profundo);
+        }
+
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 0.8rem;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 1rem;
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: var(--ouro);
+            background: #fafaf8;
+        }
+
+        .rating-stars {
+            display: flex;
+            gap: 0.5rem;
+        }
+
+        .star-btn {
+            background: none;
+            border: none;
+            font-size: 2rem;
+            cursor: pointer;
+            color: #ddd;
+            transition: color 0.3s;
+        }
+
+        .star-btn:hover,
+        .star-btn.active {
+            color: var(--ouro);
+        }
+
+        .form-submit {
+            background: var(--ouro);
+            color: var(--azul-profundo);
+            padding: 1rem 2rem;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: 700;
+            font-size: 1rem;
+        }
+
+        .form-submit:hover {
+            background: var(--ouro-escuro);
+        }
+
+        #contato {
+            background: var(--azul-profundo);
+            color: var(--ouro);
+        }
+
+        #contato h2 {
+            color: var(--ouro);
+        }
+
+        .contact-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .contact-item {
+            text-align: center;
+            padding: 1.5rem;
+            background: rgba(232, 213, 168, 0.1);
+            border-radius: 8px;
+        }
+
+        .contact-item h4 {
+            color: var(--ouro);
+            margin-bottom: 1rem;
+            font-size: 1.2rem;
+        }
+
+        .contact-item a {
+            color: var(--ouro-claro);
+            text-decoration: none;
+        }
+
+        .contact-item a:hover {
+            color: var(--ouro);
+        }
+
+        .social-links {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            margin-top: 2rem;
+        }
+
+        .social-links a {
+            color: var(--ouro);
+            font-size: 1.5rem;
+            text-decoration: none;
+        }
+
+        footer {
+            background: var(--fundo-escuro);
+            color: var(--ouro-claro);
+            padding: 2rem;
+            text-align: center;
+            font-size: 0.9rem;
+        }
+
+        /* CHATBOT STYLES */
         #chatbot-widget {
             position: fixed;
             bottom: 20px;
@@ -41,7 +495,6 @@
             display: flex;
             flex-direction: column;
             z-index: 999;
-            font-family: 'Montserrat', sans-serif;
         }
 
         #chatbot-header {
@@ -73,15 +526,6 @@
             font-size: 24px;
             cursor: pointer;
             padding: 0;
-            width: 30px;
-            height: 30px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-
-        #chatbot-close:hover {
-            color: var(--ouro-claro);
         }
 
         #chatbot-messages {
@@ -97,8 +541,14 @@
         }
 
         @keyframes slideIn {
-            from { opacity: 0; transform: translateY(10px); }
-            to { opacity: 1; transform: translateY(0); }
+            from {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
 
         .message.bot {
@@ -203,7 +653,6 @@
             background: var(--ouro-escuro);
         }
 
-        /* BOTÃO FLUTUANTE (quando chatbot fechado) */
         #chatbot-toggle {
             position: fixed;
             bottom: 20px;
@@ -228,12 +677,30 @@
             box-shadow: 0 6px 20px rgba(10, 31, 63, 0.4);
         }
 
-        /* Responsividade */
         @media (max-width: 600px) {
+            .logo {
+                height: 40px;
+            }
+
+            nav {
+                gap: 1rem;
+            }
+
+            .hero h1 {
+                font-size: 2rem;
+            }
+
+            .about-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .stats {
+                grid-template-columns: 1fr;
+            }
+
             #chatbot-widget {
                 width: calc(100% - 40px);
                 height: 450px;
-                max-height: 90vh;
             }
 
             .message-content {
@@ -241,30 +708,342 @@
             }
         }
 
-        /* Scrollbar customizado */
-        #chatbot-messages::-webkit-scrollbar {
-            width: 6px;
-        }
-
-        #chatbot-messages::-webkit-scrollbar-track {
-            background: #f1f1f1;
-        }
-
-        #chatbot-messages::-webkit-scrollbar-thumb {
-            background: var(--ouro);
-            border-radius: 3px;
-        }
-
-        #chatbot-messages::-webkit-scrollbar-thumb:hover {
-            background: var(--ouro-escuro);
-        }
-
         .hidden {
             display: none !important;
         }
     </style>
+
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "Restaurant",
+        "name": "Casa Piacere Ristorante",
+        "image": "https://casapiacere.com.br/logo.png",
+        "description": "Restaurante italiano com massas artesanais",
+        "address": {
+            "@type": "PostalAddress",
+            "streetAddress": "Rua Bernardo Guimarães, 577",
+            "addressLocality": "Belo Horizonte",
+            "addressRegion": "MG",
+            "postalCode": "30140-086",
+            "addressCountry": "BR"
+        },
+        "telephone": "(31) 98684-8128",
+        "email": "contato@casapiacere.com.br",
+        "cuisineType": "Italian",
+        "url": "https://casapiacere.com.br",
+        "sameAs": "https://instagram.com/casapiacere"
+    }
+    </script>
 </head>
 <body>
+
+    <!-- HEADER -->
+    <header>
+        <div class="header-container">
+            <div class="logo">
+                <img src="casa-piacere-logo.png" alt="Casa Piacere Logo">
+            </div>
+            <nav>
+                <a href="#sobre">História</a>
+                <a href="#cardapio">Cardápio</a>
+                <a href="#galeria">Galeria</a>
+                <a href="#avaliacoes">Avaliações</a>
+                <a href="#contato">Contato</a>
+                <a href="https://nuvemenu.com.br/reservation/casa-piacere" class="btn-reservar">Reservar</a>
+            </nav>
+        </div>
+    </header>
+
+    <!-- HERO -->
+    <section class="hero">
+        <h1>Casa Piacere Ristorante</h1>
+        <p>Massas artesanais e autêntica culinária italiana em Belo Horizonte</p>
+        <div class="hero-buttons">
+            <a href="#cardapio" class="btn btn-primary">Explorar Cardápio</a>
+            <a href="https://nuvemenu.com.br/reservation/casa-piacere" class="btn btn-secondary">Fazer Reserva</a>
+        </div>
+    </section>
+
+    <!-- INTRO STRIP -->
+    <div class="intro-strip">
+        <h3>Bem-vindo à Casa Piacere</h3>
+        <p>Localizado no coração de Funcionários, trazemos a autenticidade da culinária italiana para sua mesa</p>
+    </div>
+
+    <!-- SOBRE -->
+    <section id="sobre">
+        <h2>Nossa Essência</h2>
+        <div class="about-grid">
+            <div>
+                <img src="https://images.pexels.com/photos/1438672/pexels-photo-1438672.jpeg?auto=compress&cs=tinysrgb&w=600" alt="Ambiente Casa Piacere">
+            </div>
+            <div class="about-text">
+                <h4>Chef Geraldo Horta</h4>
+                <p>Com mais de 20 anos de experiência na culinária italiana, o Chef Geraldo Horta dedica-se à excelência em cada prato. Suas massas artesanais, risotos cremosos e frutos do mar frescos são preparados com paixão e autenticidade.</p>
+                <div class="stats">
+                    <div class="stat">
+                        <h5>100%</h5>
+                        <p>Artesanal</p>
+                    </div>
+                    <div class="stat">
+                        <h5>30+</h5>
+                        <p>Pratos</p>
+                    </div>
+                    <div class="stat">
+                        <h5>Qualidade</h5>
+                        <p>Premium</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CARDÁPIO -->
+    <section id="cardapio">
+        <h2>Nosso Cardápio</h2>
+        
+        <div class="menu-tabs">
+            <button class="menu-tab active" onclick="showMenu('antipasti')">Antipasti</button>
+            <button class="menu-tab" onclick="showMenu('primi')">Primi Piatti</button>
+            <button class="menu-tab" onclick="showMenu('secondi')">Secondi</button>
+            <button class="menu-tab" onclick="showMenu('dolci')">Dolci</button>
+        </div>
+
+        <div class="menu-grid active" id="antipasti">
+            <div class="menu-item">
+                <h5>Bruschetta</h5>
+                <p>Pão tostado com tomate fresco e manjericão</p>
+                <div class="menu-price">R$ 34</div>
+            </div>
+            <div class="menu-item">
+                <h5>Burrata</h5>
+                <p>Queijo fresco italiano com rúcula e tomate</p>
+                <div class="menu-price">R$ 56</div>
+            </div>
+            <div class="menu-item">
+                <h5>Carpaccio</h5>
+                <p>Carne bovina finamente fatiada com azeite e limão</p>
+                <div class="menu-price">R$ 52</div>
+            </div>
+            <div class="menu-item">
+                <h5>Antipasto Misto</h5>
+                <p>Seleção de embutidos e queijos italianos</p>
+                <div class="menu-price">R$ 72</div>
+            </div>
+            <div class="menu-item">
+                <h5>Camarões ao Alho</h5>
+                <p>Camarões frescos salteados com alho e vinho branco</p>
+                <div class="menu-price">R$ 66</div>
+            </div>
+        </div>
+
+        <div class="menu-grid" id="primi">
+            <div class="menu-item">
+                <h5>Spaghetti alla Carbonara</h5>
+                <p>Receita romana com pancetta, ovos e parmesão</p>
+                <div class="menu-price">R$ 72</div>
+            </div>
+            <div class="menu-item">
+                <h5>Tagliatelle al Ragù</h5>
+                <p>Fettuccine fresca com molho bolonhês tradicional</p>
+                <div class="menu-price">R$ 76</div>
+            </div>
+            <div class="menu-item">
+                <h5>Fettuccine Quattro Formaggi</h5>
+                <p>Massas frescas com queijos italianos selecionados</p>
+                <div class="menu-price">R$ 74</div>
+            </div>
+            <div class="menu-item">
+                <h5>Risotto Limão Siciliano c/ Lagosta</h5>
+                <p>Risoto cremoso com limão siciliano e lagosta fresca</p>
+                <div class="menu-price">R$ 92</div>
+            </div>
+            <div class="menu-item">
+                <h5>Risotto Funghi</h5>
+                <p>Risoto cremoso com cogumelos italianos</p>
+                <div class="menu-price">R$ 78</div>
+            </div>
+            <div class="menu-item">
+                <h5>Risotto Bacalhau à Brás</h5>
+                <p>Risoto cremoso com bacalhau desfiado</p>
+                <div class="menu-price">R$ 84</div>
+            </div>
+        </div>
+
+        <div class="menu-grid" id="secondi">
+            <div class="menu-item">
+                <h5>Tagliatelle com Filé Mignon</h5>
+                <p>Massas frescas com filé mignon selado</p>
+                <div class="menu-price">R$ 98</div>
+            </div>
+            <div class="menu-item">
+                <h5>Ossobuco</h5>
+                <p>Jarrete de vitela assado lentamente</p>
+                <div class="menu-price">R$ 104</div>
+            </div>
+            <div class="menu-item">
+                <h5>Branzino Inteiro</h5>
+                <p>Peixe fresco assado ao forno com limão</p>
+                <div class="menu-price">R$ 92</div>
+            </div>
+            <div class="menu-item">
+                <h5>Salmão Grelhado</h5>
+                <p>Filé de salmão com ervas e limão</p>
+                <div class="menu-price">R$ 90</div>
+            </div>
+        </div>
+
+        <div class="menu-grid" id="dolci">
+            <div class="menu-item">
+                <h5>Tiramisù</h5>
+                <p>Clássico italiano com café e mascarpone</p>
+                <div class="menu-price">R$ 28</div>
+            </div>
+            <div class="menu-item">
+                <h5>Panna Cotta</h5>
+                <p>Creme fresco com calda de frutas vermelhas</p>
+                <div class="menu-price">R$ 26</div>
+            </div>
+            <div class="menu-item">
+                <h5>Cannolo Siciliano</h5>
+                <p>Pastel crocante com recheio de ricota</p>
+                <div class="menu-price">R$ 24</div>
+            </div>
+            <div class="menu-item">
+                <h5>Affogato</h5>
+                <p>Sorvete vanilla com café espresso quente</p>
+                <div class="menu-price">R$ 22</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- GALERIA -->
+    <section id="galeria">
+        <h2>Galeria</h2>
+        <div class="gallery">
+            <div class="gallery-item" onclick="openLightbox(0)">
+                <img src="https://images.pexels.com/photos/1410235/pexels-photo-1410235.jpeg?auto=compress&cs=tinysrgb&w=400" alt="Prato artesanal">
+            </div>
+            <div class="gallery-item" onclick="openLightbox(1)">
+                <img src="https://images.pexels.com/photos/3915857/pexels-photo-3915857.jpeg?auto=compress&cs=tinysrgb&w=400" alt="Massas frescas">
+            </div>
+            <div class="gallery-item" onclick="openLightbox(2)">
+                <img src="https://images.pexels.com/photos/5632399/pexels-photo-5632399.jpeg?auto=compress&cs=tinysrgb&w=400" alt="Ambiente">
+            </div>
+            <div class="gallery-item" onclick="openLightbox(3)">
+                <img src="https://images.pexels.com/photos/1092730/pexels-photo-1092730.jpeg?auto=compress&cs=tinysrgb&w=400" alt="Risoto">
+            </div>
+            <div class="gallery-item" onclick="openLightbox(4)">
+                <img src="https://images.pexels.com/photos/1410780/pexels-photo-1410780.jpeg?auto=compress&cs=tinysrgb&w=400" alt="Apresentação">
+            </div>
+            <div class="gallery-item" onclick="openLightbox(5)">
+                <img src="https://images.pexels.com/photos/3407881/pexels-photo-3407881.jpeg?auto=compress&cs=tinysrgb&w=400" alt="Vinhos">
+            </div>
+        </div>
+    </section>
+
+    <!-- AVALIAÇÕES -->
+    <section id="avaliacoes">
+        <h2>Avaliações de Clientes</h2>
+        
+        <div class="reviews-list" id="reviews-list">
+            <div class="review">
+                <div class="review-header">
+                    <span class="review-name">Maria Silva</span>
+                    <span class="stars">★★★★★</span>
+                </div>
+                <p>"Melhor restaurante italiano de Belo Horizonte! A massa é perfeita, o atendimento excelente."</p>
+            </div>
+            <div class="review">
+                <div class="review-header">
+                    <span class="review-name">João Santos</span>
+                    <span class="stars">★★★★★</span>
+                </div>
+                <p>"Chef Geraldo é um gênio! O risoto de lagosta é simplesmente excepcional."</p>
+            </div>
+            <div class="review">
+                <div class="review-header">
+                    <span class="review-name">Ana Costa</span>
+                    <span class="stars">★★★★★</span>
+                </div>
+                <p>"Ambiente sofisticado, massas artesanais impecáveis. Voltarei com certeza!"</p>
+            </div>
+        </div>
+
+        <div class="review-form">
+            <h3>Deixe sua avaliação</h3>
+            <form onsubmit="submitReview(event)">
+                <div class="form-group">
+                    <label>Nome</label>
+                    <input type="text" id="review-name" required>
+                </div>
+                <div class="form-group">
+                    <label>Telefone</label>
+                    <input type="tel" id="review-phone" required>
+                </div>
+                <div class="form-group">
+                    <label>Email</label>
+                    <input type="email" id="review-email" required>
+                </div>
+                <div class="form-group">
+                    <label>Avaliação</label>
+                    <div class="rating-stars" id="rating-stars">
+                        <button type="button" class="star-btn" data-value="1" onclick="setRating(1)">★</button>
+                        <button type="button" class="star-btn" data-value="2" onclick="setRating(2)">★</button>
+                        <button type="button" class="star-btn" data-value="3" onclick="setRating(3)">★</button>
+                        <button type="button" class="star-btn" data-value="4" onclick="setRating(4)">★</button>
+                        <button type="button" class="star-btn" data-value="5" onclick="setRating(5)">★</button>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label>Mensagem</label>
+                    <textarea id="review-message" rows="4" required></textarea>
+                </div>
+                <button type="submit" class="form-submit">Enviar Avaliação</button>
+            </form>
+        </div>
+    </section>
+
+    <!-- CONTATO -->
+    <section id="contato">
+        <h2>Entre em Contato</h2>
+        <div class="contact-grid">
+            <div class="contact-item">
+                <h4>📍 Endereço</h4>
+                <p>Rua Bernardo Guimarães, 577<br>Funcionários - Belo Horizonte, MG</p>
+            </div>
+            <div class="contact-item">
+                <h4>📞 Telefone</h4>
+                <a href="tel:+5531986848128">(31) 98684-8128</a>
+            </div>
+            <div class="contact-item">
+                <h4>📧 Email</h4>
+                <a href="mailto:contato@casapiacere.com.br">contato@casapiacere.com.br</a>
+            </div>
+            <div class="contact-item">
+                <h4>🕐 Horário</h4>
+                <p>Ter-Dom: 18h às 23h30<br>Sex-Sab: até 00h<br>Seg: Fechado</p>
+            </div>
+            <div class="contact-item">
+                <h4>📅 Reservas</h4>
+                <a href="https://nuvemenu.com.br/reservation/casa-piacere" target="_blank">Reservar no NuveMenu</a>
+            </div>
+            <div class="contact-item">
+                <h4>💬 WhatsApp</h4>
+                <a href="https://wa.me/5531986848128" target="_blank">Enviar mensagem</a>
+            </div>
+        </div>
+        <div class="social-links">
+            <a href="https://instagram.com/casapiacere" target="_blank">📸 Instagram</a>
+            <a href="https://wa.me/5531986848128" target="_blank">💬 WhatsApp</a>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer>
+        <p>&copy; 2026 Casa Piacere Ristorante. Todos os direitos reservados.</p>
+    </footer>
 
     <!-- CHATBOT WIDGET -->
     <div id="chatbot-widget" class="hidden">
@@ -284,92 +1063,92 @@
         </div>
     </div>
 
-    <!-- BOTÃO FLUTUANTE (para abrir chatbot) -->
     <button id="chatbot-toggle">💬</button>
 
     <script>
-        // Base de Conhecimento do Chatbot
+        // MENU FUNCTIONALITY
+        function showMenu(menuId) {
+            document.querySelectorAll('.menu-grid').forEach(grid => grid.classList.remove('active'));
+            document.querySelectorAll('.menu-tab').forEach(tab => tab.classList.remove('active'));
+            document.getElementById(menuId).classList.add('active');
+            event.target.classList.add('active');
+        }
+
+        // RATING
+        let selectedRating = 0;
+        function setRating(value) {
+            selectedRating = value;
+            document.querySelectorAll('.star-btn').forEach((btn, index) => {
+                if (index < value) {
+                    btn.classList.add('active');
+                } else {
+                    btn.classList.remove('active');
+                }
+            });
+        }
+
+        // REVIEWS
+        async function submitReview(e) {
+            e.preventDefault();
+            const review = {
+                name: document.getElementById('review-name').value,
+                phone: document.getElementById('review-phone').value,
+                email: document.getElementById('review-email').value,
+                rating: selectedRating,
+                message: document.getElementById('review-message').value
+            };
+
+            try {
+                await window.storage.set('review:' + Date.now(), JSON.stringify(review), true);
+                location.reload();
+            } catch {
+                const li = document.createElement('div');
+                li.className = 'review';
+                li.innerHTML = `
+                    <div class="review-header">
+                        <span class="review-name">${review.name}</span>
+                        <span class="stars">${'★'.repeat(selectedRating)}</span>
+                    </div>
+                    <p>${review.message}</p>
+                `;
+                document.getElementById('reviews-list').appendChild(li);
+                document.getElementById('review-name').value = '';
+                document.getElementById('review-phone').value = '';
+                document.getElementById('review-email').value = '';
+                document.getElementById('review-message').value = '';
+                selectedRating = 0;
+                document.querySelectorAll('.star-btn').forEach(btn => btn.classList.remove('active'));
+            }
+        }
+
+        // CHATBOT
         const knowledgeBase = {
-            // Horários
             'horario|aberto|funciona|quando|hora': {
                 response: 'Casa Piacere funciona:\n\n🕕 Terça a Quinta: 18h às 23h30\n🕕 Sexta a Sábado: 18h até 00h\n🕕 Domingo: 18h às 23h30\n\n❌ Fechado segunda-feira\n\nDeseja fazer uma reserva?',
                 action: { text: 'Fazer Reserva', url: 'https://nuvemenu.com.br/reservation/casa-piacere' }
             },
-            
-            // Cardápio e Pratos
-            'cardapio|menu|prato|massa|comida|prato': {
-                response: 'Nosso cardápio inclui:\n\n🍝 Massas Artesanais\n• Carbonara (R$ 72)\n• Tagliatelle al Ragù (R$ 76)\n• Fettuccine Quattro Formaggi (R$ 74)\n\n🦞 Frutos do Mar\n• Tagliatelle com Filé (R$ 98)\n• Branzino (R$ 92)\n\n🍰 Sobremesas\n• Tiramisù, Panna Cotta, Cannolo\n\nVer cardápio completo?',
+            'cardapio|menu|prato|massa|comida': {
+                response: 'Nosso cardápio inclui:\n\n🍝 Massas Artesanais\n• Carbonara (R$ 72)\n• Tagliatelle al Ragù (R$ 76)\n• Fettuccine Quattro Formaggi (R$ 74)\n\n🦞 Frutos do Mar\n• Tagliatelle com Filé (R$ 98)\n• Branzino (R$ 92)',
                 action: { text: 'Ver Cardápio', url: '#cardapio' }
             },
-            
-            // Massa Fresca
-            'massa fresca|artesanal|faz massa': {
-                response: '✨ Sim! Todas as nossas massas são 100% artesanais.\n\nO Chef Geraldo Horta prepara diariamente usando receitas autênticas italianas e ingredientes frescos de qualidade premium.\n\nPraatos mais populares:\n• Spaghetti alla Carbonara\n• Tagliatelle al Ragù\n• Fettuccine Quattro Formaggi\n\nQuer fazer uma reserva?',
+            'massa fresca|artesanal': {
+                response: '✨ Sim! Todas as nossas massas são 100% artesanais.',
                 action: { text: 'Reservar Mesa', url: 'https://nuvemenu.com.br/reservation/casa-piacere' }
             },
-            
-            // Reservas
-            'reserva|mesa|table|book|agendar|reservar': {
-                response: '📅 Ótimo! Você pode fazer reserva de 3 formas:\n\n1️⃣ Online: Sistema Nuvemenu\n2️⃣ WhatsApp: (31) 98684-8128\n3️⃣ Telefone: (31) 98684-8128\n\nQual prefere?',
+            'reserva|mesa|agendar': {
+                response: '📅 Você pode fazer reserva de 3 formas:\n\n1️⃣ Online: Nuvemenu\n2️⃣ WhatsApp: (31) 98684-8128\n3️⃣ Telefone: (31) 98684-8128',
                 action: { text: 'Reservar Online', url: 'https://nuvemenu.com.br/reservation/casa-piacere' }
             },
-            
-            // Contato
-            'contato|telefone|email|whatsapp|fone|celular': {
-                response: '📞 Entre em contato:\n\n📱 WhatsApp: (31) 98684-8128\n☎️ Telefone: (31) 98684-8128\n📧 Email: contato@casapiacere.com.br\n📍 Rua Bernardo Guimarães, 577 - Funcionários, BH\n\nEstamos 24/7 para você!',
+            'contato|telefone|email|whatsapp': {
+                response: '📞 Entre em contato:\n\n📱 WhatsApp: (31) 98684-8128\n☎️ Telefone: (31) 98684-8128\n📧 Email: contato@casapiacere.com.br',
                 action: { text: 'Enviar WhatsApp', url: 'https://wa.me/5531986848128' }
             },
-            
-            // Chef
-            'chef|geraldo|horta|cozinha|chef': {
-                response: '👨‍🍳 Conheça nosso Chef!\n\nChef Geraldo Horta, carinhosamente conhecido como "Geraldinho do Conceito da Carne", traz mais de 20 anos de experiência culinária.\n\nEspecialista em:\n✓ Massas artesanais\n✓ Risotos cremosos\n✓ Frutos do mar frescos\n✓ Autêntica culinária italiana\n\nSua paixão por qualidade e tradição se reflete em cada prato.',
-                action: null
-            },
-            
-            // Ambiente
-            'ambiente|lugar|experiencia|atmosfera': {
-                response: '✨ Casa Piacere oferece:\n\n🏛️ Ambiente elegante e acolhedor\n🎨 Design sofisticado (azul e ouro)\n👨‍🍳 Cozinha aberta (ver o magic acontecer)\n🍽️ Mesas confortáveis\n🎵 Música ambiente relaxante\n\nPerfecto para:\n💑 Jantares românticos\n👨‍👩‍👧‍👦 Reuniões familiares\n🤝 Encontros profissionais\n🎉 Celebrações especiais\n\nQuer experimentar?',
-                action: { text: 'Fazer Reserva', url: 'https://nuvemenu.com.br/reservation/casa-piacere' }
-            },
-            
-            // Avaliações
-            'avaliacoes|reviews|opinoes|criticas': {
-                response: '⭐⭐⭐⭐⭐ 4.9/5 de 150+ clientes\n\n"Melhor restaurante italiano de BH!" - Maria S.\n"Chef Geraldo é um gênio!" - João P.\n"Massas perfeitas, ambiente impecável" - Ana T.\n\nVer mais avaliações no site.\n\nSua opinião também é valiosa!',
-                action: { text: 'Deixar Avaliação', url: '#avaliacoes' }
-            },
-            
-            // Preços
-            'preco|valor|quanto custa|caro|barato': {
-                response: '💰 Preços Casa Piacere:\n\n🍝 Massas: R$ 72-98\n🦞 Frutos do Mar: R$ 84-104\n🥩 Carnes: R$ 98-104\n🍰 Sobremesas: R$ 22-28\n\nExcelente relação custo-benefício para qualidade premium!\n\nDeseja ver o cardápio completo?',
-                action: { text: 'Ver Cardápio', url: '#cardapio' }
-            },
-
-            // Estacionamento
-            'estacionamento|vaga|carro|garagem': {
-                response: '🅿️ Localização privilegiada:\n\n📍 Rua Bernardo Guimarães, 577\n🅿️ Estacionamento na rua (gratuito)\n🚕 Fácil acesso por Uber/99\n\nPara mais informações:\n📱 (31) 98684-8128',
-                action: { text: 'Ir para Google Maps', url: 'https://maps.google.com' }
-            },
-
-            // Promocoes
-            'promocao|promoção|desconto|oferta|cupom': {
-                response: '🎉 Fique atento às nossas promoções!\n\n✨ Happy Hour (em breve)\n🎁 Programa de Fidelização\n🎂 Desconto de Aniversário\n\nSiga nosso Instagram para não perder:\n📸 @casapiacere\n\nQuer ser notificado de promoções?',
-                action: { text: 'Seguir no Instagram', url: 'https://instagram.com/casapiacere' }
-            },
-
-            // Delivery
-            'delivery|entrega|levar|casa': {
-                response: '🚚 Atualmente, Casa Piacere funciona como:\n\n✓ Presencial (Jantar no local)\n✓ Reservas via NuveMenu\n\n📝 Delivery: Em breve!\n\nPor enquanto, visite-nos e aproveite a experiência única no nosso ambiente.\n\n📱 Quer fazer uma reserva?',
-                action: { text: 'Reservar Mesa', url: 'https://nuvemenu.com.br/reservation/casa-piacere' }
-            },
-
-            // Default
             'default': {
-                response: 'Olá! 👋 Não entendi perfeitamente sua pergunta. Posso ajudar com:\n\n• Horário de funcionamento\n• Cardápio e pratos\n• Fazer reserva\n• Informações de contato\n• Chef e experiência\n• Localização\n\nOu prefere falar com um atendente?',
+                response: 'Olá! 👋 Não entendi perfeitamente. Posso ajudar com:\n\n• Horário\n• Cardápio\n• Reserva\n• Contato',
                 action: { text: 'Falar com Alguém', url: 'https://wa.me/5531986848128' }
             }
         };
 
-        // Elementos do DOM
         const widget = document.getElementById('chatbot-widget');
         const toggle = document.getElementById('chatbot-toggle');
         const closeBtn = document.getElementById('chatbot-close');
@@ -377,12 +1156,11 @@
         const inputField = document.getElementById('chatbot-input');
         const sendBtn = document.getElementById('chatbot-send');
 
-        // Controle do widget
         toggle.addEventListener('click', () => {
             widget.classList.remove('hidden');
             toggle.classList.add('hidden');
             inputField.focus();
-            sendGreeting();
+            addMessage('Olá! 👋 Bem-vindo à Casa Piacere. Como posso ajudar?', 'bot');
         });
 
         closeBtn.addEventListener('click', () => {
@@ -390,7 +1168,6 @@
             toggle.classList.remove('hidden');
         });
 
-        // Enviar mensagem
         sendBtn.addEventListener('click', sendMessage);
         inputField.addEventListener('keypress', (e) => {
             if (e.key === 'Enter') sendMessage();
@@ -399,12 +1176,8 @@
         function sendMessage() {
             const text = inputField.value.trim();
             if (!text) return;
-
-            // Mostrar mensagem do usuário
             addMessage(text, 'user');
             inputField.value = '';
-
-            // Processar resposta
             setTimeout(() => {
                 const response = findResponse(text);
                 addMessage(response.response, 'bot', response.action);
@@ -414,7 +1187,6 @@
         function addMessage(text, sender, action = null) {
             const msgDiv = document.createElement('div');
             msgDiv.className = `message ${sender}`;
-
             if (sender === 'bot') {
                 msgDiv.innerHTML = `
                     <div class="bot-avatar">🤖</div>
@@ -426,28 +1198,20 @@
             } else {
                 msgDiv.innerHTML = `<div class="message-content">${text}</div>`;
             }
-
             messagesDiv.appendChild(msgDiv);
             messagesDiv.scrollTop = messagesDiv.scrollHeight;
         }
 
         function findResponse(userText) {
-            const text = userText.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '');
-            
+            const text = userText.toLowerCase();
             for (const [keywords, data] of Object.entries(knowledgeBase)) {
                 if (keywords === 'default') continue;
-                
                 const keywordList = keywords.split('|');
                 if (keywordList.some(kw => text.includes(kw))) {
                     return data;
                 }
             }
-
             return knowledgeBase.default;
-        }
-
-        function sendGreeting() {
-            addMessage('Olá! 👋 Bem-vindo à Casa Piacere Ristorante!\n\nSou seu assistente virtual. Posso ajudar com:\n\n• Horário de funcionamento\n• Cardápio\n• Fazer reserva\n• Informações de contato\n\nComo posso ajudar?', 'bot');
         }
     </script>
 
